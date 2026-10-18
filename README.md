@@ -36,10 +36,10 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 
 A concept redesign of Spotify's onboarding, built as a cyber-brutalism OS interface. Seven screens, single-file HTML, no build step, no frameworks, no dependencies beyond two Google Fonts.
 
-dis is a concept, not a production app, it started as a React prototype. then as a Figma redesign exercise. it kept collapsing back into the same problem :( the single-file version is the answer to that
+this is a concept, not a production app, it started as a React prototype. then as a Figma redesign exercise. it kept collapsing back into the same problem :( the single-file version is the answer to that
 ---
 <img width="400" height="711" alt="spotify-os" src="https://github.com/user-attachments/assets/20916a7a-b090-44a2-85de-fcc3bcaf5cea" />
---
+---
 
 ## License
 
