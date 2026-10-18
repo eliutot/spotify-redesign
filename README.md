@@ -39,10 +39,7 @@ A concept redesign of Spotify's onboarding, built as a cyber-brutalism OS interf
 this is a concept, not a production app, it started as a React prototype. then as a Figma redesign exercise. it kept collapsing back into the same problem :( the single-file version is the answer to that
 ---
 <img width="400" height="711" alt="spotify-os" src="https://github.com/user-attachments/assets/20916a7a-b090-44a2-85de-fcc3bcaf5cea" />
----
 
 ## License
 
 Personal project, for portfolio purposes. Not affiliated with Spotify. The Spotify logo is used as a placeholder mark for the concept only. Icons are hand-drawn SVG paths, not taken from any icon library.
-
-© 2026 Angelica Dornton
