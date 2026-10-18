@@ -8,59 +8,29 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --green:#2dff7a;--green-dim:#1a9c4b;--pink:#ff2d95;--pink-dim:#a81760;
-  --ink:#07070a;--panel:#101014;--panel-2:#16161c;--line:#242430;--line-2:#3a3a48;
-  --text:#eafff0;--muted:#7c8790;
-  --font-display:'Dela Gothic One','Arial Black',sans-serif;
-  --font-mono:'JetBrains Mono',ui-monospace,monospace;
-}
+:root{--green:#2dff7a;--green-dim:#1a9c4b;--pink:#ff2d95;--pink-dim:#a81760;--ink:#07070a;--panel:#101014;--panel-2:#16161c;--line:#242430;--line-2:#3a3a48;--text:#eafff0;--muted:#7c8790;--font-display:'Dela Gothic One','Arial Black',sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace}
 *{box-sizing:border-box}
 html,body{background:#020203}
-body{
-  margin:0;min-width:320px;min-height:100vh;
-  background:linear-gradient(rgba(45,255,122,.04) 1px,transparent 1px) 0 0/32px 32px,
-             linear-gradient(90deg,rgba(45,255,122,.04) 1px,transparent 1px) 0 0/32px 32px,
-             #020203;
-  color:var(--text);font-family:var(--font-mono);-webkit-font-smoothing:antialiased;
-}
+body{margin:0;min-width:320px;min-height:100vh;background:linear-gradient(rgba(45,255,122,.04) 1px,transparent 1px) 0 0/32px 32px,linear-gradient(90deg,rgba(45,255,122,.04) 1px,transparent 1px) 0 0/32px 32px,#020203;color:var(--text);font-family:var(--font-mono);-webkit-font-smoothing:antialiased}
 button,input{font:inherit}
 button{-webkit-tap-highlight-color:transparent}
 button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
 ::selection{background:var(--pink);color:var(--ink)}
-
 .app-shell{display:grid;min-height:100svh;place-items:center;padding:24px}
-.phone-frame{
-  position:relative;width:min(100%,393px);height:min(100svh,852px);min-height:690px;
-  overflow:hidden;background:var(--ink);isolation:isolate;
-  border:1px solid var(--line-2);
-}
-@media (min-width:540px) and (min-height:760px){
-  .phone-frame{box-shadow:10px 10px 0 var(--pink)}
-}
-.phone-frame::after{
-  position:absolute;inset:0;z-index:50;content:'';pointer-events:none;
-  background:repeating-linear-gradient(180deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);
-  mix-blend-mode:multiply;opacity:.55;
-}
-.screen{height:100%;display:none}
-.screen.active{display:block}
-.screen.animating{animation:screen-in 220ms cubic-bezier(.22,.9,.3,1) both}
+.phone-frame{position:relative;width:min(100%,393px);height:min(100svh,852px);min-height:690px;overflow:hidden;background:var(--ink);isolation:isolate;border:1px solid var(--line-2)}
+@media (min-width:540px) and (min-height:760px){.phone-frame{box-shadow:10px 10px 0 var(--pink)}}
+.phone-frame::after{position:absolute;inset:0;z-index:50;content:'';pointer-events:none;background:repeating-linear-gradient(180deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);mix-blend-mode:multiply;opacity:.55}
+.screen{height:100%;display:block}
+.screen:not(.active){display:none}
+.screen.active.animating{animation:screen-in 220ms cubic-bezier(.22,.9,.3,1) both}
 @keyframes screen-in{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:translateX(0)}}
-
 .icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-linecap:square;stroke-linejoin:miter;stroke-width:2.2}
 .icon--fill{fill:currentColor;stroke:none}
 .mark{width:44px;height:44px;color:var(--green)}
 .mark path{fill:none;stroke:var(--ink);stroke-linecap:square;stroke-width:5}
 .mark--compact{width:22px;height:22px;justify-self:end}
 .mark--compact path{stroke-width:6}
-
-.button{
-  display:flex;width:100%;min-height:54px;align-items:center;justify-content:center;
-  border:1px solid var(--text);border-radius:0;cursor:pointer;
-  font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
-  transition:transform 120ms ease,box-shadow 120ms ease;
-}
+.button{display:flex;width:100%;min-height:54px;align-items:center;justify-content:center;border:1px solid var(--text);border-radius:0;cursor:pointer;font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;transition:transform 120ms ease,box-shadow 120ms ease}
 .button--primary{background:var(--green);box-shadow:4px 4px 0 var(--pink);color:var(--ink)}
 .button--secondary{background:transparent;box-shadow:4px 4px 0 var(--green);color:var(--text)}
 .button:hover:not(:disabled){transform:translate(-1px,-1px)}
@@ -69,22 +39,15 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
 .button:active:not(:disabled){box-shadow:0 0 0 transparent;transform:translate(4px,4px)}
 .button:disabled{border-color:var(--line);background:var(--panel);box-shadow:none;color:#4a4a55;cursor:not-allowed}
 .button-content{display:inline-flex;align-items:center;gap:10px}
-
-.status-bar{
-  display:flex;align-items:center;gap:8px;padding:10px 20px;
-  border-bottom:1px solid var(--green-dim);background:var(--panel);color:var(--green);
-  font-size:11px;font-weight:700;letter-spacing:.12em;
-}
+.status-bar{display:flex;align-items:center;gap:8px;padding:10px 20px;border-bottom:1px solid var(--green-dim);background:var(--panel);color:var(--green);font-size:11px;font-weight:700;letter-spacing:.12em}
 .status-muted{color:var(--muted)}
 .status-spacer{flex:1}
 .status-dot{width:6px;height:6px;background:var(--pink);animation:blink 1.4s steps(2,start) infinite}
 @keyframes blink{50%{opacity:0}}
-
 .content-screen{display:grid;grid-template-rows:auto minmax(0,1fr) auto;height:100%}
 .top-navigation{display:grid;grid-template-columns:40px 1fr 24px;align-items:center;gap:12px;padding:18px 24px 12px}
 .back-button{display:grid;width:40px;height:40px;padding:0;border:1px solid var(--line-2);background:transparent;color:var(--text);cursor:pointer;place-items:center;transition:border-color 120ms ease,color 120ms ease}
 .back-button:hover{border-color:var(--green);color:var(--green)}
-.back-button:active{transform:translate(1px,1px)}
 .step-indicator{display:flex;align-items:center;gap:5px}
 .step{height:3px;flex:1;background:var(--line-2);transition:background 160ms ease}
 .step--active{background:var(--green)}
@@ -98,18 +61,16 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
 .sticky-action{padding:12px 24px 24px;background:linear-gradient(180deg,transparent,var(--ink) 30%)}
 .selection-count{min-height:18px;margin-bottom:10px;color:var(--green);font-size:11px;font-weight:700;letter-spacing:.1em;text-align:center}
 .sticky-action--single{padding-top:20px}
-
-/* welcome */
 .welcome-screen{position:relative;display:flex;flex-direction:column;overflow:hidden}
-.welcome-stage{display:flex;flex-direction:column;justify-content:center;gap:18px;flex:1 1 auto;padding:32px 24px 0}
+.welcome-stage{display:flex;flex-direction:column;justify-content:center;gap:18px;flex:1 1 auto;padding:32px 24px 24px}
 .welcome-wordmark{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-family:var(--font-display);font-size:clamp(40px,12vw,56px);line-height:.95;text-transform:uppercase;letter-spacing:-.02em}
 .welcome-slash{color:var(--pink)}
 .welcome-os{color:var(--green)}
 .welcome-rule{height:1px;background:var(--line-2);width:100%}
 .welcome-meta{display:flex;flex-wrap:wrap;gap:8px;color:var(--muted);font-size:10px;letter-spacing:.12em}
-.welcome-play{display:grid;width:96px;height:96px;place-items:center;margin-top:12px;border:1px solid var(--text);background:var(--ink);color:var(--green);box-shadow:8px 8px 0 var(--pink)}
+.welcome-play{position:relative;z-index:1;display:grid;width:96px;height:96px;place-items:center;margin-top:12px;border:1px solid var(--text);background:var(--ink);color:var(--green);box-shadow:6px 6px 0 var(--pink)}
 .welcome-play .icon{width:44px;height:44px}
-.welcome-copy{padding:0 24px 8px}
+.welcome-copy{position:relative;z-index:2;padding:0 24px 8px}
 .eyebrow{margin-bottom:10px;color:var(--green);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
 .eyebrow::before{content:'> ';color:var(--pink)}
 .hero-title{font-family:var(--font-display);font-size:clamp(38px,11vw,48px);line-height:.96;letter-spacing:-.02em;text-transform:uppercase}
@@ -118,8 +79,6 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
 .ticker-track{display:flex;width:max-content;padding:8px 0;animation:marquee 22s linear infinite;white-space:nowrap}
 @keyframes marquee{to{transform:translateX(-50%)}}
 .welcome-action{width:100%;padding:0 24px 24px}
-
-/* genres */
 .genre-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .genre-card{position:relative;display:flex;min-height:106px;flex-direction:column;justify-content:flex-end;overflow:hidden;padding:12px;border:1px solid var(--line-2);background:var(--panel);color:var(--text);cursor:pointer;text-align:left;transition:border-color 120ms ease,background 120ms ease,transform 120ms ease}
 .genre-card:hover{border-color:var(--green)}
@@ -131,8 +90,6 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
 .genre-check{position:absolute;top:8px;right:8px;display:grid;width:18px;height:18px;border:1px solid var(--ink);background:var(--ink);color:var(--green);opacity:0;place-items:center;transition:opacity 120ms ease}
 .genre-card--selected .genre-check{opacity:1}
 .genre-check .icon{width:12px;height:12px;stroke-width:3}
-
-/* artists */
 .artist-list{display:grid;gap:1px;background:var(--line-2)}
 .artist-row{display:grid;grid-template-columns:28px 1fr 24px;align-items:center;gap:10px;padding:12px;border:0;background:var(--panel);color:var(--text);cursor:pointer;text-align:left;transition:background 120ms ease}
 .artist-row:hover{background:var(--panel-2)}
@@ -142,15 +99,12 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
 .artist-row--selected{background:var(--green);color:var(--ink)}
 .artist-row--selected .artist-index{color:var(--ink)}
 .artist-row--selected .artist-box{border-color:var(--ink);background:var(--ink);color:var(--green)}
-
-/* tuner */
 .eq-panel{margin-bottom:24px;padding:14px;border:1px solid var(--line-2);background:var(--panel);box-shadow:3px 3px 0 var(--green-dim)}
 .eq-readout{display:flex;justify-content:space-between;margin-bottom:10px;color:var(--green);font-size:10px;font-weight:700;letter-spacing:.14em}
 .eq-readout span:last-child{color:var(--pink)}
 .eq-bars{display:flex;height:72px;align-items:flex-end;gap:2px}
 .eq-bars span{flex:1;height:100%;background:linear-gradient(0deg,var(--green) 0 70%,var(--pink-dim) 70%);transform:scaleY(.2);transform-origin:bottom;animation:eq 1.4s steps(6,end) infinite alternate;animation-delay:calc(var(--i) * -.08s)}
 @keyframes eq{from{transform:scaleY(.12)}to{transform:scaleY(var(--amp,.7))}}
-
 .fader-stack{display:grid;gap:20px}
 .fader{display:grid;gap:8px}
 .fader-head{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
@@ -162,8 +116,6 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
 .fader input[type='range']::-moz-range-track{height:6px;background:linear-gradient(90deg,var(--green) var(--v),var(--line-2) var(--v))}
 .fader input[type='range']::-webkit-slider-thumb{width:14px;height:22px;margin-top:-8px;appearance:none;border:1px solid var(--ink);background:var(--pink)}
 .fader input[type='range']::-moz-range-thumb{width:14px;height:22px;border:1px solid var(--ink);border-radius:0;background:var(--pink)}
-
-/* profile */
 .profile-content{padding-top:8px}
 .photo-row{display:flex;align-items:center;gap:16px;margin-bottom:24px;padding:14px;border:1px solid var(--line-2);background:var(--panel)}
 .photo-button{display:grid;flex:0 0 auto;width:72px;height:72px;overflow:hidden;padding:0;border:1px dashed var(--green);background:var(--ink);color:var(--green);cursor:pointer;place-content:center;justify-items:center;transition:background 120ms ease}
@@ -173,7 +125,6 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
 .photo-copy{display:flex;flex-direction:column;gap:4px}
 .photo-copy strong{font-size:12px;text-transform:uppercase;letter-spacing:.06em}
 .photo-copy span{color:var(--muted);font-size:11px}
-
 .form-stack{display:grid;gap:18px}
 .input-group{display:grid;gap:8px}
 .input-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
@@ -181,8 +132,6 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
 .input-group input{width:100%;height:48px;padding:0 14px;border:1px solid var(--line-2);border-radius:0;background:var(--panel);color:var(--text);font-size:14px;font-weight:500;caret-color:var(--pink);transition:border-color 120ms ease,box-shadow 120ms ease}
 .input-group input:focus{border-color:var(--green);box-shadow:2px 2px 0 var(--green);outline:none}
 .input-group input::placeholder{color:#4a4a55;font-weight:400}
-
-/* building */
 .building-screen{display:flex;flex-direction:column;height:100%}
 .building-stage{position:relative;margin:36px 24px 24px}
 .building-pct{font-family:var(--font-display);font-size:44px;line-height:1;letter-spacing:-.03em;color:var(--green)}
@@ -192,14 +141,10 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
 .building-bar--on{background:var(--green)}
 .terminal{flex:1;margin:0 24px;padding:14px;border:1px solid var(--line-2);background:var(--panel);font-size:12px;line-height:2;overflow:hidden}
 .terminal-line{color:var(--muted);font-weight:500}
-.terminal-line::after{content:'█';margin-left:4px;color:var(--pink);animation:blink .9s steps(2,start) infinite}
 .terminal-line--done{color:var(--green)}
-.terminal-line--done::after{content:''}
 .progress{height:4px;background:var(--line-2)}
 .progress span{display:block;height:100%;background:var(--green);transition:width 400ms ease}
 .progress--chunky{height:6px;margin:20px 24px 36px}
-
-/* complete */
 .complete-screen{position:relative;display:flex;flex-direction:column;overflow:hidden;height:100%}
 .complete-header{padding:18px 24px 0}
 .complete-kicker{margin-bottom:6px;color:var(--pink);font-size:11px;font-weight:700;letter-spacing:.14em}
@@ -229,23 +174,16 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
 .track-meta small{color:var(--muted);font-size:10px}
 .complete-action{padding:14px 24px 24px}
 .complete-action .button{min-height:44px}
-
-@media (max-height:800px){
-  .welcome-play{width:72px;height:72px;box-shadow:6px 6px 0 var(--pink)}
-  .welcome-play .icon{width:32px;height:32px}
-  .screen-header{margin-bottom:18px}
-}
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    scroll-behavior:auto!important;animation-duration:.01ms!important;
-    animation-iteration-count:1!important;transition-duration:.01ms!important;
-  }
-}
+.err{display:none;padding:16px;background:#2a0a12;border:1px solid var(--pink);color:#ffb3c7;font-size:12px;line-height:1.5;margin:16px;white-space:pre-wrap}
+.err.show{display:block}
+@media (max-height:800px){.welcome-play{position:relative;z-index:1;width:72px;height:72px;box-shadow:6px 6px 0 var(--pink)}.welcome-play .icon{width:32px;height:32px}.screen-header{margin-bottom:18px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
 <div class="app-shell">
   <div class="phone-frame">
+    <div class="err" id="err"></div>
 
     <section class="screen active" data-screen="welcome">
       <div class="status-bar"><span class="status-dot"></span><span>SPOTIFY//OS v5.0</span><span class="status-spacer"></span><span class="status-muted">23:47</span></div>
@@ -260,7 +198,6 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
       <div class="welcome-action"><button class="button button--primary" data-go="genres" type="button"><span class="button-content">Start listening <svg aria-hidden="true" class="icon icon--fill" viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5Z"/></svg></span></button></div>
     </section>
 
-   
     <section class="screen content-screen" data-screen="genres">
       <nav class="top-navigation">
         <button class="back-button" data-go="welcome" type="button"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
@@ -274,7 +211,6 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
       <footer class="sticky-action"><div class="selection-count" id="genre-count">[ SELECT AT LEAST ONE ]</div><button class="button button--primary" data-go="artists" id="genre-next" disabled type="button">Next</button></footer>
     </section>
 
-   
     <section class="screen content-screen" data-screen="artists">
       <nav class="top-navigation">
         <button class="back-button" data-go="genres" type="button"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
@@ -288,7 +224,6 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
       <footer class="sticky-action"><div class="selection-count" id="artist-count">[ 3 MORE TO LOCK SIGNAL ]</div><button class="button button--primary" data-go="tuner" id="artist-next" disabled type="button">Next</button></footer>
     </section>
 
-  
     <section class="screen content-screen" data-screen="tuner">
       <nav class="top-navigation">
         <button class="back-button" data-go="artists" type="button"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
@@ -305,6 +240,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
       </main>
       <footer class="sticky-action sticky-action--single"><button class="button button--primary" data-go="profile" type="button">Lock in mix</button></footer>
     </section>
+
     <section class="screen content-screen" data-screen="profile">
       <nav class="top-navigation">
         <button class="back-button" data-go="tuner" type="button"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
@@ -326,7 +262,6 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
       <footer class="sticky-action sticky-action--single"><button class="button button--primary" data-go="building" id="profile-next" type="button">Continue</button></footer>
     </section>
 
-    
     <section class="screen building-screen" data-screen="building">
       <div class="status-bar"><span class="status-dot"></span><span>BURNING DAY ONE</span><span class="status-spacer"></span><span class="status-muted">23:47</span></div>
       <div class="building-stage">
@@ -360,295 +295,292 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
 </div>
 
 <script>
+try {
 (function(){
   'use strict';
 
-  // ---------- data ----------
-  const GENRES = [
-    { name: 'Pop', code: 'POP', bpm: 118 },
-    { name: 'Hip-Hop', code: 'HPH', bpm: 92 },
-    { name: 'Rock', code: 'RCK', bpm: 132 },
-    { name: 'Electronic', code: 'ELX', bpm: 128 },
-    { name: 'R&B', code: 'RNB', bpm: 84 },
-    { name: 'Jazz', code: 'JZZ', bpm: 104 },
-    { name: 'K-Pop', code: 'KPP', bpm: 124 },
-    { name: 'Latin', code: 'LAT', bpm: 98 },
+  var GENRES = [
+    { name:'Pop', code:'POP', bpm:118 },
+    { name:'Hip-Hop', code:'HPH', bpm:92 },
+    { name:'Rock', code:'RCK', bpm:132 },
+    { name:'Electronic', code:'ELX', bpm:128 },
+    { name:'R&B', code:'RNB', bpm:84 },
+    { name:'Jazz', code:'JZZ', bpm:104 },
+    { name:'K-Pop', code:'KPP', bpm:124 },
+    { name:'Latin', code:'LAT', bpm:98 }
   ];
-  const ARTISTS = ['Daft Punk','Charli XCX','Kendrick Lamar','Aphex Twin','Rosalía','Tame Impala','FKA twigs','Burial','Bad Bunny'];
-  const TRACKS = [
-    { title: 'Around the World', artist: 'Daft Punk', length: 229 },
-    { title: '360', artist: 'Charli XCX', length: 133 },
-    { title: 'Alright', artist: 'Kendrick Lamar', length: 219 },
-    { title: 'Windowlicker', artist: 'Aphex Twin', length: 367 },
+  var ARTISTS = ['Daft Punk','Charli XCX','Kendrick Lamar','Aphex Twin','Rosalía','Tame Impala','FKA twigs','Burial','Bad Bunny'];
+  var TRACKS = [
+    { title:'Around the World', artist:'Daft Punk', length:229 },
+    { title:'360', artist:'Charli XCX', length:133 },
+    { title:'Alright', artist:'Kendrick Lamar', length:219 },
+    { title:'Windowlicker', artist:'Aphex Twin', length:367 }
   ];
-  const BUILD_LOG = [
-    'MOUNTING TASTE PROFILE',
-    'SCANNING 82,114,309 TRACKS',
-    'CROSS-REFERENCING ARTISTS',
-    'CALIBRATING ENERGY / TEMPO',
-    'PRESSING DAY ONE MIX',
-  ];
+  var BUILD_LOG = ['MOUNTING TASTE PROFILE','SCANNING 82,114,309 TRACKS','CROSS-REFERENCING ARTISTS','CALIBRATING ENERGY / TEMPO','PRESSING DAY ONE MIX'];
 
-  // ---------- state ----------
-  const state = {
+  var state = {
     screen: 'welcome',
-    genres: new Set(['Pop','Electronic','Hip-Hop']),
-    artists: new Set(['Daft Punk','Charli XCX','Kendrick Lamar']),
-    levels: { energy: 60, tempo: 50, weird: 40 },
+    genres: ['Pop','Electronic','Hip-Hop'],
+    artists: ['Daft Punk','Charli XCX','Kendrick Lamar'],
+    levels: { energy:60, tempo:50, weird:40 },
     displayName: 'Avery',
     trackIndex: 0,
     elapsed: 0,
-    playing: true,
+    playing: true
   };
 
-  const $ = sel => document.querySelector(sel);
-  const $$ = sel => Array.from(document.querySelectorAll(sel));
-  const fmt = s => Math.floor(s/60) + ':' + String(s%60).padStart(2,'0');
+  function $(sel){ return document.querySelector(sel); }
+  function $$(sel){ return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+  function fmt(s){ return Math.floor(s/60) + ':' + (s%60<10?'0':'') + (s%60); }
+  function hasIn(arr, v){ return arr.indexOf(v) !== -1; }
 
-  const checkSvg = '<svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></svg>';
-
-  // ---------- screen navigation ----------
   function showScreen(name) {
     state.screen = name;
-    $$('.screen').forEach(el => {
-      el.classList.toggle('active', el.dataset.screen === name);
+    $$('.screen').forEach(function(el){
       el.classList.remove('animating');
+      if (el.getAttribute('data-screen') === name) {
+        el.classList.add('active');
+        void el.offsetWidth;
+        el.classList.add('animating');
+      } else {
+        el.classList.remove('active');
+      }
     });
-    const active = document.querySelector('.screen[data-screen="'+name+'"]');
-    void active.offsetWidth;
-    active.classList.add('animating');
-
     if (name === 'genres') renderGenres();
     if (name === 'artists') renderArtists();
     if (name === 'tuner') renderTuner();
     if (name === 'building') runBuilding();
-    if (name === 'complete') { renderComplete(); startPlayback(); } else { stopPlayback(); }
+    if (name === 'complete') { renderComplete(); startPlayback(); }
+    else { stopPlayback(); }
   }
 
-  document.addEventListener('click', e => {
-    const goEl = e.target.closest('[data-go]');
-    if (goEl && !goEl.disabled) {
-      showScreen(goEl.dataset.go);
-    }
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('[data-go]');
+    if (t && !t.disabled) showScreen(t.getAttribute('data-go'));
   });
 
-  // ---------- genres ----------
-  function renderGenres() {
-    const grid = $('#genre-grid');
+  function renderGenres(){
+    var grid = $('#genre-grid');
     if (!grid.dataset.built) {
-      grid.innerHTML = GENRES.map((g,i) => `
-        <button class="genre-card" data-genre="${g.name}" type="button">
-          <span class="genre-code">${String(i+1).padStart(2,'0')}//${g.code}</span>
-          <span class="genre-name">${g.name}</span>
-          <span class="genre-bpm">${g.bpm} BPM</span>
-          <span class="genre-check">${checkSvg}</span>
-        </button>`).join('');
+      var html = '';
+      for (var i = 0; i < GENRES.length; i++) {
+        var g = GENRES[i];
+        html += '<button class="genre-card" data-genre="'+g.name+'" type="button">'
+          + '<span class="genre-code">'+(i<9?'0':'')+(i+1)+'//'+g.code+'</span>'
+          + '<span class="genre-name">'+g.name+'</span>'
+          + '<span class="genre-bpm">'+g.bpm+' BPM</span>'
+          + '<span class="genre-check"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7"/></svg></span>'
+          + '</button>';
+      }
+      grid.innerHTML = html;
       grid.dataset.built = '1';
-      grid.addEventListener('click', e => {
-        const card = e.target.closest('[data-genre]');
-        if (!card) return;
-        const name = card.dataset.genre;
-        if (state.genres.has(name)) state.genres.delete(name); else state.genres.add(name);
+      grid.addEventListener('click', function(e){
+        var c = e.target.closest('[data-genre]');
+        if (!c) return;
+        var n = c.getAttribute('data-genre');
+        var idx = state.genres.indexOf(n);
+        if (idx === -1) state.genres.push(n); else state.genres.splice(idx,1);
         syncGenres();
       });
     }
     syncGenres();
   }
-
-  function syncGenres() {
-    $$('[data-genre]').forEach(card => {
-      card.classList.toggle('genre-card--selected', state.genres.has(card.dataset.genre));
+  function syncGenres(){
+    $$('[data-genre]').forEach(function(c){
+      c.classList.toggle('genre-card--selected', hasIn(state.genres, c.getAttribute('data-genre')));
     });
-    const n = state.genres.size;
-    $('#genre-count').textContent = n ? `[ ${n} DISC${n>1?'S':''} LOADED ]` : '[ SELECT AT LEAST ONE ]';
+    var n = state.genres.length;
+    $('#genre-count').textContent = n ? '[ '+n+' DISC'+(n>1?'S':'')+' LOADED ]' : '[ SELECT AT LEAST ONE ]';
     $('#genre-next').disabled = n === 0;
   }
 
-  // ---------- artists ----------
-  function renderArtists() {
-    const list = $('#artist-list');
+  function renderArtists(){
+    var list = $('#artist-list');
     if (!list.dataset.built) {
-      list.innerHTML = ARTISTS.map((name,i) => `
-        <button class="artist-row" data-artist="${name}" type="button">
-          <span class="artist-index">${String(i+1).padStart(2,'0')}</span>
-          <span class="artist-name">${name}</span>
-          <span class="artist-box"></span>
-        </button>`).join('');
+      var html = '';
+      for (var i = 0; i < ARTISTS.length; i++) {
+        html += '<button class="artist-row" data-artist="'+ARTISTS[i]+'" type="button">'
+          + '<span class="artist-index">'+(i<9?'0':'')+(i+1)+'</span>'
+          + '<span class="artist-name">'+ARTISTS[i]+'</span>'
+          + '<span class="artist-box"></span>'
+          + '</button>';
+      }
+      list.innerHTML = html;
       list.dataset.built = '1';
-      list.addEventListener('click', e => {
-        const row = e.target.closest('[data-artist]');
-        if (!row) return;
-        const name = row.dataset.artist;
-        if (state.artists.has(name)) state.artists.delete(name); else state.artists.add(name);
+      list.addEventListener('click', function(e){
+        var r = e.target.closest('[data-artist]');
+        if (!r) return;
+        var n = r.getAttribute('data-artist');
+        var idx = state.artists.indexOf(n);
+        if (idx === -1) state.artists.push(n); else state.artists.splice(idx,1);
         syncArtists();
       });
     }
     syncArtists();
   }
-
-  function syncArtists() {
-    $$('[data-artist]').forEach(row => {
-      const on = state.artists.has(row.dataset.artist);
-      row.classList.toggle('artist-row--selected', on);
-      row.querySelector('.artist-box').textContent = on ? 'X' : '';
+  function syncArtists(){
+    $$('[data-artist]').forEach(function(r){
+      var on = hasIn(state.artists, r.getAttribute('data-artist'));
+      r.classList.toggle('artist-row--selected', on);
+      r.querySelector('.artist-box').textContent = on ? 'X' : '';
     });
-    const n = state.artists.size;
-    const remaining = Math.max(0, 3 - n);
-    $('#artist-count').textContent = remaining
-      ? `[ ${remaining} MORE TO LOCK SIGNAL ]`
-      : `[ ${n} SIGNALS LOCKED ]`;
-    $('#artist-next').disabled = remaining > 0;
+    var n = state.artists.length;
+    var rem = Math.max(0, 3 - n);
+    $('#artist-count').textContent = rem ? '[ '+rem+' MORE TO LOCK SIGNAL ]' : '[ '+n+' SIGNALS LOCKED ]';
+    $('#artist-next').disabled = rem > 0;
   }
 
-  // ---------- tuner ----------
-  function renderTuner() {
-    const bars = $('#eq-bars');
+  function renderTuner(){
+    var bars = $('#eq-bars');
     if (!bars.dataset.built) {
-      bars.innerHTML = Array.from({length: 18}, (_,i) => `<span style="--i:${i}"></span>`).join('');
+      var h = '';
+      for (var i = 0; i < 18; i++) h += '<span style="--i:'+i+'"></span>';
+      bars.innerHTML = h;
       bars.dataset.built = '1';
     }
-    const faders = $('#fader-stack');
-    if (!faders.dataset.built) {
-      const defs = [
+    var stack = $('#fader-stack');
+    if (!stack.dataset.built) {
+      var defs = [
         { key:'energy', label:'Energy', lo:'CHILL', hi:'RIOT' },
         { key:'tempo', label:'Tempo', lo:'SLOW', hi:'FAST' },
-        { key:'weird', label:'Weirdness', lo:'SAFE', hi:'FERAL' },
+        { key:'weird', label:'Weirdness', lo:'SAFE', hi:'FERAL' }
       ];
-      faders.innerHTML = defs.map(f => `
-        <label class="fader">
-          <span class="fader-head"><b>${f.label}</b><span data-val="${f.key}">000</span></span>
-          <input type="range" min="0" max="100" value="0" data-fader="${f.key}" style="--v:0%"/>
-          <span class="fader-scale"><span>${f.lo}</span><span>${f.hi}</span></span>
-        </label>`).join('');
-      faders.dataset.built = '1';
-      faders.addEventListener('input', e => {
-        const input = e.target.closest('[data-fader]');
-        if (!input) return;
-        state.levels[input.dataset.fader] = Number(input.value);
+      var h2 = '';
+      for (var j = 0; j < defs.length; j++) {
+        var f = defs[j];
+        h2 += '<label class="fader">'
+          + '<span class="fader-head"><b>'+f.label+'</b><span data-val="'+f.key+'">000</span></span>'
+          + '<input type="range" min="0" max="100" value="0" data-fader="'+f.key+'" style="--v:0%"/>'
+          + '<span class="fader-scale"><span>'+f.lo+'</span><span>'+f.hi+'</span></span>'
+          + '</label>';
+      }
+      stack.innerHTML = h2;
+      stack.dataset.built = '1';
+      stack.addEventListener('input', function(e){
+        var inp = e.target.closest('[data-fader]');
+        if (!inp) return;
+        state.levels[inp.getAttribute('data-fader')] = Number(inp.value);
         syncTuner();
       });
     }
     syncTuner();
   }
-
-  function syncTuner() {
-    Object.keys(state.levels).forEach(k => {
-      const v = state.levels[k];
-      const input = document.querySelector('[data-fader="'+k+'"]');
-      if (input) { input.value = v; input.style.setProperty('--v', v + '%'); }
-      const readout = document.querySelector('[data-val="'+k+'"]');
-      if (readout) readout.textContent = String(v).padStart(3,'0');
+  function syncTuner(){
+    Object.keys(state.levels).forEach(function(k){
+      var v = state.levels[k];
+      var inp = document.querySelector('[data-fader="'+k+'"]');
+      if (inp) { inp.value = v; inp.style.setProperty('--v', v+'%'); }
+      var r = document.querySelector('[data-val="'+k+'"]');
+      if (r) r.textContent = (v<10?'00':(v<100?'0':''))+v;
     });
-    const bpm = Math.round(70 + state.levels.tempo * 1.1);
-    const stateLabel = state.levels.energy > 66 ? 'HIGH VOLTAGE' : state.levels.energy > 33 ? 'STEADY' : 'LOW BURN';
+    var bpm = Math.round(70 + state.levels.tempo * 1.1);
+    var st = state.levels.energy > 66 ? 'HIGH VOLTAGE' : state.levels.energy > 33 ? 'STEADY' : 'LOW BURN';
     $('#eq-bpm').textContent = bpm + ' BPM';
-    $('#eq-state').textContent = stateLabel;
+    $('#eq-state').textContent = st;
     $('#eq-panel').style.setProperty('--amp', (0.35 + state.levels.energy/160).toFixed(2));
   }
 
-  
-  (function bindProfile(){
-    const nameInput = $('#profile-name');
-    nameInput.addEventListener('input', () => {
-      state.displayName = nameInput.value.trim() || 'listener';
-      $('#profile-next').disabled = !nameInput.value.trim();
-    });
-    $('#profile-next').disabled = !nameInput.value.trim();
-  })();
+  var pname = $('#profile-name');
+  pname.addEventListener('input', function(){
+    var v = pname.value.trim();
+    state.displayName = v || 'listener';
+    $('#profile-next').disabled = !v;
+  });
+  $('#profile-next').disabled = !pname.value.trim();
 
-  /* kms */
-  let buildTimer = null;
-  function runBuilding() {
+  var buildTimer = null;
+  function runBuilding(){
     if (buildTimer) { clearInterval(buildTimer); buildTimer = null; }
-    const bars = $('#build-bars');
+    var bars = $('#build-bars');
     if (!bars.dataset.built) {
-      bars.innerHTML = Array.from({length: 24}, () => '<span class="building-bar"></span>').join('');
+      var h = '';
+      for (var i = 0; i < 24; i++) h += '<span class="building-bar"></span>';
+      bars.innerHTML = h;
       bars.dataset.built = '1';
     }
-    $$('#build-bars .building-bar').forEach(b => b.classList.remove('building-bar--on'));
+    $$('#build-bars .building-bar').forEach(function(b){ b.classList.remove('building-bar--on'); });
     $('#terminal').innerHTML = '';
     $('#build-pct').textContent = '000%';
     $('#build-progress').style.width = '0%';
-
-    let step = 0;
-    const total = BUILD_LOG.length;
-    const perStep = 640;
-    buildTimer = setInterval(() => {
+    var step = 0;
+    var total = BUILD_LOG.length;
+    buildTimer = setInterval(function(){
       step++;
-      const pct = Math.round((step / total) * 100);
-      $('#build-pct').textContent = String(pct).padStart(3,'0') + '%';
-      $('#build-progress').style.width = pct + '%';
-      $$('#build-bars .building-bar').forEach((b,i) => {
-        b.classList.toggle('building-bar--on', i / 24 < pct/100);
+      var pct = Math.round((step/total)*100);
+      $('#build-pct').textContent = (pct<10?'00':(pct<100?'0':''))+pct+'%';
+      $('#build-progress').style.width = pct+'%';
+      $$('#build-bars .building-bar').forEach(function(b,i){
+        b.classList.toggle('building-bar--on', (i/24) < (pct/100));
       });
-      const line = BUILD_LOG[step-1];
-      const done = step >= total;
-      const div = document.createElement('div');
-      div.className = 'terminal-line ' + (done ? 'terminal-line--done' : '');
-      div.innerHTML = '<span>[' + (done ? 'OK' : '..') + ']</span> ' + line;
-      const existing = $('#terminal').children;
+      var done = step >= total;
+      var div = document.createElement('div');
+      div.className = 'terminal-line' + (done ? ' terminal-line--done' : '');
+      div.innerHTML = '<span>['+(done?'OK':'..')+']</span> ' + BUILD_LOG[step-1];
+      var existing = $('#terminal').children;
       if (existing[step-1]) existing[step-1].replaceWith(div);
       else $('#terminal').appendChild(div);
       if (step >= total) {
         clearInterval(buildTimer); buildTimer = null;
-        setTimeout(() => { if (state.screen === 'building') showScreen('complete'); }, 700);
+        setTimeout(function(){ if (state.screen === 'building') showScreen('complete'); }, 700);
       }
-    }, perStep);
+    }, 640);
   }
 
- 
-  function renderComplete() {
+  function renderComplete(){
     $('#welcome-name').textContent = state.displayName || 'listener';
-    const tags = Array.from(state.genres).slice(0, 3).join(' / ').toUpperCase();
+    var tags = state.genres.slice(0,3).join(' / ').toUpperCase();
     $('#player-label').textContent = 'DAY ONE MIX' + (tags ? ' · ' + tags : '');
-    const list = $('#track-list');
+    var list = $('#track-list');
     if (!list.dataset.built) {
       list.dataset.built = '1';
-      list.addEventListener('click', e => {
-        const row = e.target.closest('[data-track]');
+      list.addEventListener('click', function(e){
+        var row = e.target.closest('[data-track]');
         if (!row) return;
-        state.trackIndex = Number(row.dataset.track);
+        state.trackIndex = Number(row.getAttribute('data-track'));
         state.elapsed = 0;
         state.playing = true;
+        renderTrackList();
         updatePlayer();
       });
     }
     renderTrackList();
     updatePlayer();
   }
-
-  function renderTrackList() {
-    const list = $('#track-list');
-    list.innerHTML = TRACKS.map((t,i) => `
-      <button class="track${i === state.trackIndex ? ' track--active' : ''}" data-track="${i}" type="button">
-        <span class="track-number">${i === state.trackIndex ? '▶' : '0'+(i+1)}</span>
-        <span class="track-meta"><strong>${t.title}</strong><small>${t.artist}</small></span>
-        <span class="track-duration">${fmt(t.length)}</span>
-      </button>`).join('');
+  function renderTrackList(){
+    var h = '';
+    for (var i = 0; i < TRACKS.length; i++) {
+      var t = TRACKS[i];
+      var active = i === state.trackIndex;
+      h += '<button class="track'+(active?' track--active':'')+'" data-track="'+i+'" type="button">'
+        + '<span class="track-number">'+(active?'▶':'0'+(i+1))+'</span>'
+        + '<span class="track-meta"><strong>'+t.title+'</strong><small>'+t.artist+'</small></span>'
+        + '<span class="track-duration">'+fmt(t.length)+'</span>'
+        + '</button>';
+    }
+    $('#track-list').innerHTML = h;
   }
-
-  function updatePlayer() {
-    const t = TRACKS[state.trackIndex];
+  function updatePlayer(){
+    var t = TRACKS[state.trackIndex];
     $('#player-title').textContent = t.title;
     $('#player-artist').textContent = t.artist;
     $('#player-elapsed').textContent = fmt(state.elapsed);
     $('#player-remaining').textContent = '-' + fmt(Math.max(0, t.length - state.elapsed));
-    $('#player-progress').style.width = ((state.elapsed / t.length) * 100) + '%';
-    $$('#track-list .track').forEach((row,i) => {
-      row.classList.toggle('track--active', i === state.trackIndex);
-      const num = row.querySelector('.track-number');
-      num.textContent = i === state.trackIndex ? '▶' : '0'+(i+1);
+    $('#player-progress').style.width = ((state.elapsed/t.length)*100)+'%';
+    $$('#track-list .track').forEach(function(row,i){
+      var active = i === state.trackIndex;
+      row.classList.toggle('track--active', active);
+      row.querySelector('.track-number').textContent = active ? '▶' : '0'+(i+1);
     });
   }
 
-  let playTimer = null;
-  function startPlayback() {
+  var playTimer = null;
+  function startPlayback(){
     stopPlayback();
     if (!state.playing) return;
-    playTimer = setInterval(() => {
+    playTimer = setInterval(function(){
       if (!state.playing) return;
       state.elapsed++;
-      const t = TRACKS[state.trackIndex];
+      var t = TRACKS[state.trackIndex];
       if (state.elapsed >= t.length) {
         state.trackIndex = (state.trackIndex + 1) % TRACKS.length;
         state.elapsed = 0;
@@ -657,39 +589,40 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-o
       updatePlayer();
     }, 1000);
   }
-  function stopPlayback() {
+  function stopPlayback(){
     if (playTimer) { clearInterval(playTimer); playTimer = null; }
   }
 
-  document.querySelector('[data-track-play]').addEventListener('click', function(){
+  $('[data-track-play]').addEventListener('click', function(){
     state.playing = !state.playing;
     this.innerHTML = state.playing
       ? '<svg aria-hidden="true" class="icon icon--fill" viewBox="0 0 24 24"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>'
       : '<svg aria-hidden="true" class="icon icon--fill" viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5Z"/></svg>';
     startPlayback();
   });
-  document.querySelector('[data-track-prev]').addEventListener('click', () => {
+  $('[data-track-prev]').addEventListener('click', function(){
     state.trackIndex = (state.trackIndex - 1 + TRACKS.length) % TRACKS.length;
     state.elapsed = 0;
     renderTrackList();
     updatePlayer();
   });
-  document.querySelector('[data-track-next]').addEventListener('click', () => {
+  $('[data-track-next]').addEventListener('click', function(){
     state.trackIndex = (state.trackIndex + 1) % TRACKS.length;
     state.elapsed = 0;
     renderTrackList();
     updatePlayer();
   });
 
-  // ---------- init ----------
   showScreen('welcome');
-
-  // allow ?screen=... deep links
-  const qs = new URLSearchParams(location.search).get('screen');
-  if (qs && ['welcome','genres','artists','tuner','profile','building','complete'].includes(qs)) {
-    showScreen(qs);
-  }
 })();
+} catch (err) {
+  var box = document.getElementById('err');
+  if (box) {
+    box.className = 'err show';
+    box.textContent = 'Something broke while loading. Copy this error and send it:\n\n' + (err && err.stack || err);
+  }
+  console.error(err);
+}
 </script>
 </body>
 </html>
